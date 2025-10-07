@@ -36,6 +36,13 @@ const NAV_LINKS = [
   { href: "#contato", label: "Contato" },
 ];
 
+const withBase = (path: string) => {
+  const base = import.meta.env.BASE_URL || "/";
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+  const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${normalizedBase}${normalizedPath}`;
+};
+
 export default function ExecucoesFiscaisPage() {
   const year = useMemo(() => new Date().getFullYear(), []);
   const [activeId, setActiveId] = useState<string>("#alertas");
@@ -214,7 +221,7 @@ export default function ExecucoesFiscaisPage() {
                 aria-label="Logotipo Marinho Mendes"
               >
                 <img
-                  src="/LogoBranca.png"
+                  src={withBase("LogoBranca.png")}
                   alt="Logotipo Marinho Mendes Sociedade de Advogados"
                   className="h-full w-full object-contain"
                   loading="lazy"
@@ -512,7 +519,7 @@ export default function ExecucoesFiscaisPage() {
 
             <figure className="relative w-full aspect-[16/10] rounded-2xl border bg-white ring-1 ring-slate-200 overflow-hidden">
               <img
-                src="/metodologia.png"
+                src={withBase("metodologia.png")}
                 alt="Fluxo de trabalho em defesas fiscais"
                 loading="lazy"
                 decoding="async"
@@ -589,7 +596,7 @@ export default function ExecucoesFiscaisPage() {
               >
                 <figure className="aspect-[4/3] bg-slate-50 border-b ring-1 ring-slate-200 overflow-hidden">
                   <img
-                    src={art.image}
+                    src={withBase(art.image)}
                     alt={art.alt}
                     loading="lazy"
                     decoding="async"
@@ -701,7 +708,7 @@ export default function ExecucoesFiscaisPage() {
               {/* Espaço para imagem do escritório */}
               <figure className="mt-8 w-full aspect-[16/9] rounded-2xl border border-white/10 bg-white/5 ring-1 ring-white/10 overflow-hidden">
                 <img
-                  src="/Escritorio.jpg"
+                  src={withBase("Escritorio.jpg")}
                   alt="Espaço interno do escritório Marinho Mendes"
                   loading="lazy"
                   decoding="async"
